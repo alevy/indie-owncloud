@@ -1,3 +1,5 @@
 indie-owncloud-*.pkg.tar.xz
 owncloud-*.tar.bz2
 *~
+pkg/
+src/

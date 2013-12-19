@@ -24,7 +24,8 @@
             "depends" : [
                 "php",
                 "php-apache",
-                "php-gd"
+                "php-gd",
+                "sudo"
             ],
             "apache2modules" : [
                 "php5",
@@ -38,6 +39,7 @@
                 "iconv",
                 "mysql",
                 "mysqli",
+                "pdo_mysql",
                 "zip",
                 "openssl"
             ],
@@ -51,7 +53,6 @@
                         "core",
                         "cron.php",
                         "db_structure.xml",
-                        "files",
                         "index.html",
                         "index.php",
                         "l10n",
@@ -64,30 +65,31 @@
                         "settings",
                         "status.php",
                         "themes",
-                        "upgrade.php"
+                        "version.php"
                     ],
                     "source" : "owncloud/$1",
                     "uname" : "root",
                     "gname" : "root",
-                    "mode"  : "preserve"
+                    "filepermissions" : "preserve",
+                    "dirpermissions"  : "preserve"
                 },
                 {
                     "type"  : "directory",
                     "name"  : "data",
                     "retentionpolicy" : "keep",
                     "retentionbucket" : "datadir",
-                    "mode"  : "0750",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}"
+                    "permissions" : "0750",
+                    "uname"       : "${apache2.uname}",
+                    "gname"       : "${apache2.gname}"
                 },
                 {
                     "type"  : "directory",
                     "name"  : "config",
                     "retentionpolicy" : "keep",
                     "retentionbucket" : "configdir",
-                    "mode"  : "0750",
-                    "uname" : "${apache2.uname}",
-                    "gname" : "${apache2.gname}"
+                    "permissions" : "0750",
+                    "uname"       : "${apache2.uname}",
+                    "gname"       : "${apache2.gname}"
                 },
                 {
                     "type"         : "file",
