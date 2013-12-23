@@ -1,4 +1,0 @@
-Install indie-owncloud application:
-    pacman -U indie-owncloud*.pkg.tar.xz
-Deploy Owncloud at the top of virtual host example.com:
-    indie-box-admin deploy -f site.json

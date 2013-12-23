@@ -1,10 +1,10 @@
 {
-  "siteid" : "s0001",
-  "hostname" : "example.com",
+  "siteid" : "s0070",
+  "hostname" : "owncloud-test",
 
   "appconfigs" : [
     {
-      "appconfigid" : "a0001",
+      "appconfigid" : "a0071",
       "context" : "",
 
       "appid" : "indie-owncloud",
