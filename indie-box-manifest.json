@@ -98,13 +98,8 @@
                     "templatelang" : "varsubst"
                 },
                 {
-                    "type"         : "file",
-                    "name"         : "config/autoconfig.php",
-                    "template"     : "tmpl/autoconfig.php.tmpl",
-                    "templatelang" : "varsubst",
-                    "permissions"  : "0640",
-                    "uname"        : "${apache2.uname}",
-                    "gname"        : "${apache2.gname}"
+                    "type"   : "perlscript",
+                    "source" : "bin/generate-autoconfig.pl"
                 },
                 {
                     "type"   : "perlscript",
