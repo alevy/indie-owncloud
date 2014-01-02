@@ -98,14 +98,29 @@
                     "templatelang" : "varsubst"
                 },
                 {
-                    "type"         : "perlscript",
-                    "source"       : "bin/write-config.pl",
+                    "type"         : "file",
+                    "name"         : "config/autoconfig.php",
+                    "template"     : "tmpl/autoconfig.php.tmpl",
+                    "templatelang" : "varsubst",
+                    "permissions"  : "0640",
+                    "uname"        : "${apache2.uname}",
+                    "gname"        : "${apache2.gname}"
+                },
+                {
+                    "type"   : "perlscript",
+                    "source" : "bin/fix-permissions.pl"
                 }
             ],
             "installers" : [
                 {
                     "type"   : "perlscript",
                     "source" : "bin/web-install.pl"
+                }
+            ],
+            "upgraders" : [
+                {
+                    "type"   : "perlscript",
+                    "source" : "bin/fix-restore.pl"
                 }
             ]
         },

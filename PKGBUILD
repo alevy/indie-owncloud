@@ -38,9 +38,12 @@ package() {
     mkdir -p $pkgdir/usr/share/indie-owncloud/bin
     install -m755 $startdir/bin/write-config.pl $pkgdir/usr/share/indie-owncloud/bin/
     install -m755 $startdir/bin/web-install.pl  $pkgdir/usr/share/indie-owncloud/bin/
+    install -m755 $startdir/bin/fix-permissions.pl  $pkgdir/usr/share/indie-owncloud/bin/
+    install -m755 $startdir/bin/fix-restore.pl  $pkgdir/usr/share/indie-owncloud/bin/
 
     mkdir -p $pkgdir/usr/share/indie-owncloud/tmpl
-    install -m755 $startdir/tmpl/htaccess.tmpl $pkgdir/usr/share/indie-owncloud/tmpl/
+    install -m644 $startdir/tmpl/htaccess.tmpl $pkgdir/usr/share/indie-owncloud/tmpl/
+    install -m644 $startdir/tmpl/autoconfig.php.tmpl $pkgdir/usr/share/indie-owncloud/tmpl/
 
     cp -dr --no-preserve=ownership $startdir/src/owncloud $pkgdir/usr/share/indie-owncloud/
 
