@@ -1,8 +1,8 @@
 _developer=http://owncloud.org/
 _maintainer=http://indieboxproject.org/
 pkgname=indie-owncloud
-pkgver=6.0.0a
-pkgrel=2
+pkgver=6.0.2
+pkgrel=1
 pkgdesc="Your Cloud, Your Data, Your Way!"
 arch=('any')
 url=$_developer
@@ -13,7 +13,7 @@ depends=()
 backup=()
 source=("http://download.owncloud.org/community/owncloud-${pkgver}.tar.bz2")
 options=('!strip')
-md5sums=('63c2913aa8382f695d7ade5ad11e51b2')
+md5sums=('da5286427771c68d14b351cf68f515fd')
 _description=$(sed ':a;N;$!ba;s/\n/ /g' $startdir/description.html)
 # from http://stackoverflow.com/questions/1251999/sed-how-can-i-replace-a-newline-n
 _parameterize=$(cat <<END
