@@ -33,6 +33,7 @@ my $confFile     = "$configDir/config.php";
 
 my $apacheUname = $config->getResolve( 'apache2.uname' );
 my $apacheGname = $config->getResolve( 'apache2.gname' );
+my $hostname    = $config->getResolve( 'site.hostname' );
 
 if( 'upgrade' eq $operation ) {
 
@@ -61,6 +62,7 @@ if( 'upgrade' eq $operation ) {
     $conf =~ s!(['"]dbhost['"]\s+=>\s["'])\S*(["'],?)!$1$dbhost$2!;
     $conf =~ s!(['"]dbuser['"]\s+=>\s["'])\S*(["'],?)!$1$dbuser$2!;
     $conf =~ s!(['"]dbpassword['"]\s+=>\s["'])\S*(["'],?)!$1$dbpass$2!;
+    $conf =~ s!(['"]trusted_domains['"]\s+=>\s*array\s*\(\s*0\s*=>\s*["'])\S*(\s*['"]\s*\))!$1$hostname$2!;
 
     IndieBox::Utils::saveFile( $confFile, $conf, 0640, $apacheUname, $apacheGname );
 
