@@ -175,8 +175,6 @@ my $TEST = new IndieBox::Testing::AppTest(
                         }
 
                         $response = httpUploadRelativeContext( $c, '/index.php/apps/files/ajax/upload.php', 'foo-testfile', '/', $requestToken );
-                        use Data::Dumper;
-                        print "XXX Response is " . Dumper( $response ) . "\n\n";
                         unless( $response->{headers} =~ m!HTTP/1.1 200 OK! ) {
                             $c->reportError( 'Not HTTP Status 200', $response->{headers} );
                         }
