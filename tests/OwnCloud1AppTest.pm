@@ -33,6 +33,7 @@ my $custPointValues = {
         'adminpass'  => 'specialpass'
 };
 my $filesAppRelativeUrl = '/index.php/apps/files';
+my $testFile            = 'foo-testfile';
 
 ## Factored out upload routines.
 
@@ -141,7 +142,12 @@ my $TEST = new IndieBox::Testing::AppTest(
                         unless( $response->{content} =~ m!<span id="expandDisplayName">$adminLogin</span>! ) {
                             $c->reportError( 'Wrong logged-on page (logged-in user not shown)' );
                         }
-                        					
+
+                        # uploaded file must not be there
+                        $response = $c->httpGetRelativeContext( $filesAppRelativeUrl . '/download/' . $testFile );
+                        if( $response->{headers} =~ m!HTTP/1.1 200 OK! ) {
+                            $c->reportError( 'Test file found but should not', $testFile, $response->{headers} );
+                        }
                         return 1;
                     }
             ),
@@ -174,7 +180,7 @@ my $TEST = new IndieBox::Testing::AppTest(
                             $c->reportError( 'Cannot find request token', $response->{content} );
                         }
 
-                        $response = httpUploadRelativeContext( $c, '/index.php/apps/files/ajax/upload.php', 'foo-testfile', '/', $requestToken );
+                        $response = httpUploadRelativeContext( $c, '/index.php/apps/files/ajax/upload.php', $testFile, '/', $requestToken );
                         unless( $response->{headers} =~ m!HTTP/1.1 200 OK! ) {
                             $c->reportError( 'Not HTTP Status 200', $response->{headers} );
                         }
@@ -187,6 +193,22 @@ my $TEST = new IndieBox::Testing::AppTest(
                     check => sub {
                         my $c = shift;
 
+                        # need to login first
+                        my $postData = {
+                            'user'            => $custPointValues->{'adminlogin'},
+                            'password'        => $custPointValues->{'adminpass'},
+                            'timezone-offset' => 0
+                        };
+                        
+                        my $response = $c->httpPostRelativeContext( '/', $postData );
+                        unless( $response->{headers} =~ m!HTTP/1.1 302 Found! ) {
+                            $c->reportError( 'Not HTTP Status 203', $response->{headers} );
+                        }
+
+                        $response = $c->httpGetRelativeContext( $filesAppRelativeUrl . '/download/' . $testFile );
+                        unless( $response->{headers} =~ m!HTTP/1.1 200 OK! ) {
+                            $c->reportError( 'Test file not found', $testFile, $response->{headers} );
+                        }
                         return 1;
                     }
             )
