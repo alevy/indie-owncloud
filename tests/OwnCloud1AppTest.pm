@@ -2,7 +2,7 @@
 #
 # Simple test for indie-owncloud
 #
-# Copyright (C) 2013 Indie Box Project http://indieboxproject.org/
+# Copyright (C) 2013-2014 Indie Box Project http://indieboxproject.org/
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -97,7 +97,7 @@ sub httpUploadRelativeContext {
 
 my $TEST = new IndieBox::Testing::AppTest(
     name                     => 'OwnCloud1AppTest',
-    description              => 'Tests whether anonymous guests can leave messages.',
+    description              => 'Tests admin account and single-file upload.',
     appToTest                => 'indie-owncloud',
     hostname                 => 'owncloud-test',
     customizationPointValues => $custPointValues,
