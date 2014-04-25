@@ -34,6 +34,10 @@ package() {
     perl -pe "$_parameterize" $startdir/indie-box-manifest.json > $pkgdir/var/lib/indie-box/manifests/indie-owncloud.json
     chmod 0644 $pkgdir/var/lib/indie-box/manifests/indie-owncloud.json
 
+# Icons
+    mkdir -p $pkgdir/srv/http/_appicons/$pkgname
+    install -m644 $startdir/appicons/{72x72,144x144}.png $pkgdir/srv/http/_appicons/$pkgname/
+
 # Code
     mkdir -p $pkgdir/usr/share/indie-owncloud/bin
     install -m755 $startdir/bin/fix-permissions.pl  $pkgdir/usr/share/indie-owncloud/bin/
