@@ -2,7 +2,7 @@ _developer=http://owncloud.org/
 _maintainer=http://indieboxproject.org/
 pkgname=indie-owncloud
 pkgver=6.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Your Cloud, Your Data, Your Way!"
 arch=('any')
 url=$_developer
@@ -33,6 +33,10 @@ package() {
     mkdir -p $pkgdir/var/lib/indie-box/manifests
     perl -pe "$_parameterize" $startdir/indie-box-manifest.json > $pkgdir/var/lib/indie-box/manifests/indie-owncloud.json
     chmod 0644 $pkgdir/var/lib/indie-box/manifests/indie-owncloud.json
+
+# Icons
+    mkdir -p $pkgdir/srv/http/_appicons/$pkgname
+    install -m644 $startdir/appicons/{72x72,144x144}.png $pkgdir/srv/http/_appicons/$pkgname/
 
 # Code
     mkdir -p $pkgdir/usr/share/indie-owncloud/bin
